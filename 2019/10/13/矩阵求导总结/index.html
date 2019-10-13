@@ -79,21 +79,21 @@
 
 
 
-<meta name="description" content="基本公式： 1234Y = A * X --&amp;gt; DY/DX = A&amp;apos;Y = X * A --&amp;gt; DY/DX = AY = A&amp;apos; * X * B --&amp;gt; DY/DX = A * B&amp;apos;Y = A&amp;apos; * X&amp;apos; * B --&amp;gt; DY/DX = B * A&amp;apos;  行向量Y’对列向量X求导： 12dX&amp;apos;/dX = Id">
+<meta name="description" content="基本公式： 1234Y = A * X --&amp;gt; DY/DX = A&amp;apos;Y = X * A --&amp;gt; DY/DX = AY = A&amp;apos; * X * B --&amp;gt; DY/DX = A * B&amp;apos;Y = A&amp;apos; * X&amp;apos; * B --&amp;gt; DY/DX = B * A&amp;apos;">
 <meta name="keywords" content="this is keywords">
 <meta property="og:type" content="article">
 <meta property="og:title" content="矩阵求导总结">
 <meta property="og:url" content="http://yoursite.com/2019/10/13/矩阵求导总结/index.html">
 <meta property="og:site_name" content="明光佛系青年的禅院">
-<meta property="og:description" content="基本公式： 1234Y = A * X --&amp;gt; DY/DX = A&amp;apos;Y = X * A --&amp;gt; DY/DX = AY = A&amp;apos; * X * B --&amp;gt; DY/DX = A * B&amp;apos;Y = A&amp;apos; * X&amp;apos; * B --&amp;gt; DY/DX = B * A&amp;apos;  行向量Y’对列向量X求导： 12dX&amp;apos;/dX = Id">
+<meta property="og:description" content="基本公式： 1234Y = A * X --&amp;gt; DY/DX = A&amp;apos;Y = X * A --&amp;gt; DY/DX = AY = A&amp;apos; * X * B --&amp;gt; DY/DX = A * B&amp;apos;Y = A&amp;apos; * X&amp;apos; * B --&amp;gt; DY/DX = B * A&amp;apos;">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2019/10/13/矩阵求导总结/%E7%9F%A9%E9%98%B5%E6%B1%82%E5%AF%BC%E6%80%BB%E7%BB%93/%E5%9B%BE1.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/10/13/矩阵求导总结/%E7%9F%A9%E9%98%B5%E6%B1%82%E5%AF%BC%E6%80%BB%E7%BB%93/%E6%A0%87%E9%87%8F%E5%AF%B9%E5%90%91%E9%87%8F%E6%B1%82%E5%AF%BC1.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/10/13/矩阵求导总结/%E7%9F%A9%E9%98%B5%E6%B1%82%E5%AF%BC%E6%80%BB%E7%BB%93/%E6%A0%87%E9%87%8F%E5%AF%B9%E5%90%91%E9%87%8F%E6%B1%82%E5%AF%BC2.jpg">
-<meta property="og:updated_time" content="2019-10-13T05:11:19.981Z">
+<meta property="og:updated_time" content="2019-10-13T05:25:30.921Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="矩阵求导总结">
-<meta name="twitter:description" content="基本公式： 1234Y = A * X --&amp;gt; DY/DX = A&amp;apos;Y = X * A --&amp;gt; DY/DX = AY = A&amp;apos; * X * B --&amp;gt; DY/DX = A * B&amp;apos;Y = A&amp;apos; * X&amp;apos; * B --&amp;gt; DY/DX = B * A&amp;apos;  行向量Y’对列向量X求导： 12dX&amp;apos;/dX = Id">
+<meta name="twitter:description" content="基本公式： 1234Y = A * X --&amp;gt; DY/DX = A&amp;apos;Y = X * A --&amp;gt; DY/DX = AY = A&amp;apos; * X * B --&amp;gt; DY/DX = A * B&amp;apos;Y = A&amp;apos; * X&amp;apos; * B --&amp;gt; DY/DX = B * A&amp;apos;">
 <meta name="twitter:image" content="http://yoursite.com/2019/10/13/矩阵求导总结/%E7%9F%A9%E9%98%B5%E6%B1%82%E5%AF%BC%E6%80%BB%E7%BB%93/%E5%9B%BE1.jpg">
 
 
@@ -307,6 +307,7 @@
         <p>基本公式：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Y = A * X --&gt; DY/DX = A&apos;</span><br><span class="line">Y = X * A --&gt; DY/DX = A</span><br><span class="line">Y = A&apos; * X * B --&gt; DY/DX = A * B&apos;</span><br><span class="line">Y = A&apos; * X&apos; * B --&gt; DY/DX = B * A&apos;</span><br></pre></td></tr></table></figure>
 
+<a id="more"></a>
 <p>行向量Y’对列向量X求导：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dX&apos;/dX = I</span><br><span class="line">d(AX)&apos;/dX = A&apos;</span><br></pre></td></tr></table></figure>
 
@@ -418,7 +419,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
