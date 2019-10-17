@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="构造析构，BIF，property，new构造函数：委托构造在一个类中初始化其它类的init（self[,param1…]）函数">
+<meta name="keywords" content="this is keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python学习日记（二）">
+<meta property="og:url" content="http://yoursite.com/2019/10/14/python学习日记（二）/index.html">
+<meta property="og:site_name" content="明光佛系青年的禅院">
+<meta property="og:description" content="构造析构，BIF，property，new构造函数：委托构造在一个类中初始化其它类的init（self[,param1…]）函数">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-10-17T04:18:58.991Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python学习日记（二）">
+<meta name="twitter:description" content="构造析构，BIF，property，new构造函数：委托构造在一个类中初始化其它类的init（self[,param1…]）函数">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/10/14/python学习日记（二）/">
+
+
+
+
+
+  <title>python学习日记（二） | 明光佛系青年的禅院</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">明光佛系青年的禅院</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">this is subtitle</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/14/python学习日记（二）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="this is author">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="明光佛系青年的禅院">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">python学习日记（二）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-14T19:26:48+08:00">
+                2019-10-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="构造析构，BIF，property，new"><a href="#构造析构，BIF，property，new" class="headerlink" title="构造析构，BIF，property，new"></a>构造析构，BIF，property，new</h2><h2 id="构造函数：委托构造"><a href="#构造函数：委托构造" class="headerlink" title="构造函数：委托构造"></a>构造函数：委托构造</h2><p>在一个类中初始化其它类的<strong>init</strong>（self[,param1…]）函数</p>
+<a id="more"></a>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">Turtle</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,x)</span>:</span></span><br><span class="line">        self.num=x</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">Fish</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,y)</span>:</span></span><br><span class="line">        self.num=y</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">Pool</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,x,y)</span>:</span></span><br><span class="line">        self.turtle=Turtle(x)</span><br><span class="line">        self.fish=Fish(y)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">printnum</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"池子里乌龟%d只，鱼%d只"</span> %(self.turtle.num,self.fish.num))</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>pool=Pool(<span class="number">3</span>,<span class="number">4</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>pool.printnum()</span><br><span class="line">池子里乌龟<span class="number">3</span>只，鱼<span class="number">4</span>只</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self._x = <span class="literal">None</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getx</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self._x</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setx</span><span class="params">(self, value)</span>:</span></span><br><span class="line">        self._x = value</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">delx</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">del</span> self._x</span><br><span class="line">    x = property(getx, setx, delx, <span class="string">"I'm the 'x' property."</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="一些BIF（内置函数）"><a href="#一些BIF（内置函数）" class="headerlink" title="一些BIF（内置函数）"></a>一些BIF（内置函数）</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>isinstance(pool.fish,Fish)</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">shark</span><span class="params">(Fish)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>issubclass(shark,Fish)</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>hasattr(pool,<span class="string">'fish'</span>)<span class="comment">#attribute，属性</span></span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>hasattr(pool,<span class="string">'fish.num'</span>)</span><br><span class="line"><span class="literal">False</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>hasattr(pool.fish,<span class="string">'num'</span>)</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>getattr(pool.fish,<span class="string">'num'</span>)</span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>setattr(pool.fish,<span class="string">'num'</span>,<span class="number">3</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>getattr(pool.fish,<span class="string">'num'</span>)</span><br><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="x-property-setparameter-getparameter-delparameter"><a href="#x-property-setparameter-getparameter-delparameter" class="headerlink" title="x=property(setparameter,getparameter.delparameter"></a>x=property(setparameter,getparameter.delparameter</h2><p>以后可直接更改x的名字而不用改parameter的各个构造函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">example</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,size)</span>:</span></span><br><span class="line">        self.size=size</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getsize</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.size</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setsize</span><span class="params">(self,x)</span>:</span></span><br><span class="line">        self.size=x</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">delsize</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">del</span> self.size</span><br><span class="line">    x=property(getsize,setsize,delsize)</span><br><span class="line"><span class="comment">#增改删查</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>exam1=example(<span class="number">10</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>exam1.getsize()</span><br><span class="line"><span class="number">10</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>exam1=example(<span class="number">18</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>exam1.getsize()</span><br><span class="line"><span class="number">18</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>exam1.x<span class="comment">#直接访问size</span></span><br><span class="line"><span class="number">18</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>exam1.x=<span class="number">99</span><span class="comment">#直接更改size</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>exam1.x</span><br><span class="line"><span class="number">99</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">del</span> exam1.x<span class="comment">#直接删除size</span></span><br><span class="line"><span class="comment">#官方文档中还可以这样用</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self._x = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @property#修饰符</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">x</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""I'm the 'x' property."""</span></span><br><span class="line">        <span class="keyword">return</span> self._x</span><br><span class="line"></span><br><span class="line"><span class="meta">    @x.setter</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">x</span><span class="params">(self, value)</span>:</span></span><br><span class="line">        self._x = value</span><br><span class="line"></span><br><span class="line"><span class="meta">    @x.deleter</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">x</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">del</span> self._x</span><br></pre></td></tr></table></figure>
+
+<p>构造函数 <strong>new</strong>, <strong>init</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#__new__, __init__</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">CapStr</span><span class="params">(str)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__new__</span><span class="params">(cls,string)</span>:</span></span><br><span class="line">        string=string.upper()</span><br><span class="line">        <span class="keyword">return</span> str.__new__(cls,string)</span><br><span class="line"></span><br><span class="line">a=CapStr(<span class="string">'hello world'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line"><span class="string">'HELLO WORLD'</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><p>算术运算基础，以及子类return的误区</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">try_int</span><span class="params">(int)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__add__</span><span class="params">(self,other)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self+other<span class="comment">#报错，相当于在return里接着进行self的加法，死循环</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__sub__</span><span class="params">(self,other)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self-other</span><br><span class="line">RecursionError: maximum recursion depth exceeded</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">try_int</span><span class="params">(int)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__add__</span><span class="params">(self,other)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> int(self)+int(other)<span class="comment">#强制类型转换成父类int就不会报错了</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__sub__</span><span class="params">(self,other)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> int(self)-int(other)</span><br></pre></td></tr></table></figure>
+
+<p>以下假设变量： a=10，b=20：</p>
+<table>
+<thead>
+<tr>
+<th align="left">表头1</th>
+<th align="left">表头2</th>
+<th align="left">表头3</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">+</td>
+<td align="left">两个对象相加</td>
+<td align="left">30</td>
+</tr>
+<tr>
+<td align="left">-</td>
+<td align="left">得到负数或是一个数减去另一个数</td>
+<td align="left">-10</td>
+</tr>
+<tr>
+<td align="left">*</td>
+<td align="left">两个数相乘或是返回一个被重复若干次的字符串</td>
+<td align="left">200</td>
+</tr>
+<tr>
+<td align="left">/</td>
+<td align="left">x除以y</td>
+<td align="left">0.5</td>
+</tr>
+<tr>
+<td align="left">%</td>
+<td align="left">返回除法的余数</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">**</td>
+<td align="left">返回x的y次幂</td>
+<td align="left">10^20</td>
+</tr>
+<tr>
+<td align="left">//</td>
+<td align="left">返回商的整数部分（向下取整）</td>
+<td align="left">9//2=4,-9//2=-5</td>
+</tr>
+</tbody></table>
+<pre><code class="python"></code></pre>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/13/test/" rel="next" title="test">
+                <i class="fa fa-chevron-left"></i> test
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">this is author</p>
+              <p class="site-description motion-element" itemprop="description">this is description</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#构造析构，BIF，property，new"><span class="nav-number">1.</span> <span class="nav-text">构造析构，BIF，property，new</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构造函数：委托构造"><span class="nav-number">2.</span> <span class="nav-text">构造函数：委托构造</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些BIF（内置函数）"><span class="nav-number">3.</span> <span class="nav-text">一些BIF（内置函数）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#x-property-setparameter-getparameter-delparameter"><span class="nav-number">4.</span> <span class="nav-text">x=property(setparameter,getparameter.delparameter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运算符"><span class="nav-number">5.</span> <span class="nav-text">运算符</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">this is author</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
