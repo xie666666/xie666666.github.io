@@ -310,17 +310,17 @@
 <p>在爬虫中，可以把数据写入CSV文件，示例如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> csv <span class="comment">#需要导入库</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'data.csv'</span>,<span class="string">'w'</span>) <span class="keyword">as</span> fp:</span><br><span class="line">    writer = csv.writer(fp)<span class="comment">#先传入文件句柄</span></span><br><span class="line">    writer.writerow([<span class="string">'id'</span>,<span class="string">'name'</span>,<span class="string">'age'</span>])<span class="comment">#然后写入</span></span><br><span class="line">    writer.writerow([<span class="string">'10001'</span>,<span class="string">'mike'</span>,<span class="string">'20'</span>])<span class="comment">#按行写入</span></span><br><span class="line">    writer.writerow([<span class="string">'10002'</span>,<span class="string">'Bob'</span>,<span class="string">'22'</span>])</span><br><span class="line">    writer.writerow([<span class="string">'10003'</span>,<span class="string">'Jordan'</span>,<span class="string">'21'</span>])</span><br></pre></td></tr></table></figure>
 
-<p><img src="/2019/12/15/csv文件/%E8%BE%93%E5%87%BA%E7%BB%93%E6%9E%9C1.webp" alt="输出结果1"></p>
+<p><img src="//yoursite.com/2019/12/15/csv文件/%E8%BE%93%E5%87%BA%E7%BB%93%E6%9E%9C1.webp" alt="输出结果1"></p>
 <p>如果想修改列与列之间的分隔符，传入delimiter参数：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> csv <span class="comment">#需要导入库</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'data.csv'</span>,<span class="string">'w'</span>) <span class="keyword">as</span> fp:</span><br><span class="line">    writer = csv.writer(fp,delimiter = <span class="string">'*'</span>)<span class="comment">#delimiter只能是一个字节的字符</span></span><br><span class="line">    writer.writerow([<span class="string">'id'</span>,<span class="string">'name'</span>,<span class="string">'age'</span>])<span class="comment">#然后写入</span></span><br><span class="line">    writer.writerow([<span class="string">'10001'</span>,<span class="string">'mike'</span>,<span class="string">'20'</span>])<span class="comment">#按行写入</span></span><br><span class="line">    writer.writerow([<span class="string">'10002'</span>,<span class="string">'Bob'</span>,<span class="string">'22'</span>])</span><br><span class="line">    writer.writerow([<span class="string">'10003'</span>,<span class="string">'Jordan'</span>,<span class="string">'21'</span>])</span><br></pre></td></tr></table></figure>
 
-<p><img src="/2019/12/15/csv文件/%E8%BE%93%E5%87%BA%E7%BB%93%E6%9E%9C2.webp" alt="输出结果2"></p>
+<p><img src="//yoursite.com/2019/12/15/csv文件/%E8%BE%93%E5%87%BA%E7%BB%93%E6%9E%9C2.webp" alt="输出结果2"></p>
 <p>也可以先写标题，在写数据：<br><strong>注意</strong>:数据是一个列表，并且用<strong>writerows()</strong>方法</p>
-<p><img src="/2019/12/15/csv文件/writerows()%E6%96%B9%E6%B3%95.webp" alt="writerows()"></p>
+<p><img src="//yoursite.com/2019/12/15/csv文件/writerows()%E6%96%B9%E6%B3%95.webp" alt="writerows()"></p>
 <p>一般情况下，爬虫的数据以字典居多：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'data.csv'</span>,<span class="string">'w'</span>) <span class="keyword">as</span> fp:</span><br><span class="line">    fieldnames = [<span class="string">'id'</span>,<span class="string">'name'</span>,<span class="string">'age'</span>]  <span class="comment">#先定义字典里的key</span></span><br><span class="line">    <span class="comment">#用DictWriter（）方法，增加一个fieldnames</span></span><br><span class="line">    writer = csv.DictWriter(fp,fieldnames  = fieldnames,delimiter = <span class="string">'+'</span>) </span><br><span class="line">    writer.writeheader()<span class="comment">#先写入key</span></span><br><span class="line">    <span class="comment">#按照字典的方式写入</span></span><br><span class="line">    writer.writerow(&#123; <span class="string">'id'</span>:<span class="string">'10001'</span>,<span class="string">'name'</span>:<span class="string">'mike'</span>,<span class="string">'age'</span>:<span class="string">'20'</span>&#125;)</span><br><span class="line">    writer.writerow(&#123; <span class="string">'id'</span>:<span class="string">'10002'</span>,<span class="string">'name'</span>:<span class="string">'Bob'</span>,<span class="string">'age'</span>:<span class="string">'22'</span>&#125;)</span><br><span class="line">    writer.writerow(&#123; <span class="string">'id'</span>:<span class="string">'10003'</span>,<span class="string">'name'</span>:<span class="string">'Jordan'</span>,<span class="string">'age'</span>:<span class="string">'21'</span>&#125;)</span><br></pre></td></tr></table></figure>
 
-<p><img src="/2019/12/15/csv文件/%E8%BE%93%E5%87%BA%E7%BB%93%E6%9E%9C3.webp" alt="输出结果3"></p>
+<p><img src="//yoursite.com/2019/12/15/csv文件/%E8%BE%93%E5%87%BA%E7%BB%93%E6%9E%9C3.webp" alt="输出结果3"></p>
 <p>读取CSV文件由两种方式：<br>（1）第一种</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'data.csv'</span>,<span class="string">'r'</span>,encoding = <span class="string">'utf8'</span>) <span class="keyword">as</span> fp:</span><br><span class="line">    reader = csv.reader(fp)</span><br><span class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> reader:</span><br><span class="line">        print(row)</span><br></pre></td></tr></table></figure>
 
@@ -360,6 +360,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/18/网易暴力裁员-老蒋巨靠谱/" rel="prev" title="网易暴力裁员-老蒋巨靠谱">
+                网易暴力裁员-老蒋巨靠谱 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -427,7 +431,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -440,7 +444,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
